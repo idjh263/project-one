@@ -1498,3 +1498,26 @@
 
 
 // Irene
+
+
+var fetchButton = document.getElementById("fetch-button");
+
+function ticketMasterApi() {
+    var requestUrl = "https://app.ticketmaster.com//discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
+
+    fetch(requestUrl)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+          
+    })
+    .catch(error => {
+        console.log("error!");
+        console.error(error);
+    })
+}
+
+fetchButton.addEventListener('click', ticketMasterApi);
+
