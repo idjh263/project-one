@@ -1500,47 +1500,6 @@
 // Irene
 
 
-var firstApiButton = document.getElementById("buttonApi1");
-var nbaTeamApi = "https://www.balldontlie.io/api/v1/players";
-var input1 = document.querySelector("#generic-search");
 
-function getNbaApi() {
-    var url1 = nbaTeamApi + "?search=" + input1.value; 
-
-    fetch(url1)
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(data) {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log("error!");
-        console.error(error);
-    })
-}
-firstApiButton.addEventListener('click', getNbaApi);
-
-var secondApiButton = document.getElementById("buttonApi2");
-var ticketmasterApi = "https://app.ticketmaster.com/discovery/v2/attractions.json?/";
-var key = "dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
-var input2 = document.querySelector("#artist-search");
-
-function getTicketmasterApi() {
-    var url2 = ticketmasterApi + "&apikey=" + key + "&source=" +input2.value;
-
-    fetch(url2)
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(data) {
-        console.log(data);
-    })
-    .catch(error => {
-        console.log("error!");
-        console.error(error);
-    })
-}
-secondApiButton.addEventListener('click', getTicketmasterApi);
 
 
