@@ -1499,9 +1499,9 @@
 
 // Irene
 
-var nbaButton = document.getElementById("nba-button");
+var firstApiButton = document.getElementById("buttonApi1");
 var nbaTeamApi = "https://www.balldontlie.io/api/v1/players";
-var input1 = document.querySelector("#nba-team");
+var input1 = document.querySelector("#generic-search");
 
 function getNbaApi() {
     var url1 = nbaTeamApi + "?search=" + input1.value; 
@@ -1518,12 +1518,12 @@ function getNbaApi() {
         console.error(error);
     })
 }
-nbaButton.addEventListener('click', getNbaApi);
+firstApiButton.addEventListener('click', getNbaApi);
 
-var searchTMButton = document.getElementById("searchTM-button");
+var secondApiButton = document.getElementById("buttonApi2");
 var ticketmasterApi = "https://app.ticketmaster.com/discovery/v2/attractions.json?/";
 var key = "dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
-var input2 = document.querySelector("#keyword");
+var input2 = document.querySelector("#artist-search");
 
 function getTicketmasterApi() {
     var url2 = ticketmasterApi + "&apikey=" + key + "&source=" +input2.value;
@@ -1540,6 +1540,4 @@ function getTicketmasterApi() {
         console.error(error);
     })
 }
-searchTMButton.addEventListener('click', getTicketmasterApi);
-
-
+secondApiButton.addEventListener('click', getTicketmasterApi);
