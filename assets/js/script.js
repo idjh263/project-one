@@ -1499,25 +1499,47 @@
 
 // Irene
 
+var nbaButton = document.getElementById("nba-button");
+var nbaTeamApi = "https://www.balldontlie.io/api/v1/players";
+var input1 = document.querySelector("#nba-team");
 
-var fetchButton = document.getElementById("fetch-button");
+function getNbaApi() {
+    var url1 = nbaTeamApi + "?search=" + input1.value; 
 
-function ticketMasterApi() {
-    var requestUrl = "https://app.ticketmaster.com//discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
-
-    fetch(requestUrl)
+    fetch(url1)
     .then(function(response) {
         return response.json();
     })
     .then(function(data) {
         console.log(data);
-          
     })
     .catch(error => {
         console.log("error!");
         console.error(error);
     })
 }
+nbaButton.addEventListener('click', getNbaApi);
 
-fetchButton.addEventListener('click', ticketMasterApi);
+var searchTMButton = document.getElementById("searchTM-button");
+var ticketmasterApi = "https://app.ticketmaster.com/discovery/v2/attractions.json?/";
+var key = "dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
+var input2 = document.querySelector("#keyword");
+
+function getTicketmasterApi() {
+    var url2 = ticketmasterApi + "&apikey=" + key + "&source=" +input2.value;
+
+    fetch(url2)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+    .catch(error => {
+        console.log("error!");
+        console.error(error);
+    })
+}
+searchTMButton.addEventListener('click', getTicketmasterApi);
+
 
