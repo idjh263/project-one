@@ -510,6 +510,12 @@ progress {
   font-weight: 300;
   line-height: 1.2;
 }
+#attraction-panel {
+  display:none;
+}
+#container-panel {
+  display:none;
+}
 @media (min-width: 1200px) {
   .display-3 {
     font-size: 4rem;
@@ -586,7 +592,7 @@ progress {
   color: #6c757d;
 }
 .blockquote-footer::before {
-  content: "— ";
+  content: "— ";
 }
 
 .img-fluid {
