@@ -2,9 +2,7 @@
 
 ## Description
 
-The purpose of our application will be to provide the user the ability to 
-
-Features:
+The purpose of our application will be to provide the user the ability to:
 
 - look up music artists using different search parameters such as by artist names, album names etc.
 - find upcoming events related to their favourite artists
@@ -15,8 +13,8 @@ Built with:
 - HTML
 - Bootstrap CSS
 - Javascript
-- ** API
-- ** API
+- Ticket Master API
+- The Audio DB API
 
 
 Team members:
