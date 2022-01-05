@@ -48,6 +48,32 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 
+var userInput;
+
+function searchDisc () {
+  userInput = $("#generic-search").val();
+
+  console.log("userInput", userInput);
+}
+
+$("#search-btn").on("click", searchDisc);
+
+
+
+
+
+var userInputTwo;
+var data;
+
+function artistInput () {
+
+  userInputTwo = $("#artist-search").val();
+
+  console.log("userInputTwo", userInputTwo);
+}
+
+$("#submit-btn").on("click", artistInput);
+
 
 
 
@@ -1570,7 +1596,7 @@ function getEvents(page) {
   //change url to include input
   $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV&keyword=adele",
+    url:`https://app.ticketmaster.com/discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV&keyword=${userInput}`,
     async:true,
     dataType: "json",
     success: function(json) {
