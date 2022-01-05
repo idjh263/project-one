@@ -62,17 +62,17 @@ $("#search-btn").on("click", searchDisc);
 
 
 
-var userInputTwo;
-var data;
+// var userInputTwo;
+// var data;
 
-function artistInput () {
+// function artistInput () {
 
-  userInputTwo = $("#artist-search").val();
+//   userInputTwo = $("#artist-search").val.trim();
 
-  console.log("userInputTwo", userInputTwo);
-}
+//   console.log(userInputTwo);
+// }
 
-$("#submit-btn").on("click", artistInput);
+// $("#submit-btn").on("click", artistInput);
 
 
 
@@ -1573,105 +1573,133 @@ $("#submit-btn").on("click", artistInput);
 
 // Irene
 
-var key = "dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV";
-var input = document.getElementById("keyword");  // change to input id 
+var userInputTwo;
+
+
+function artistInput () {
+
+  userInputTwo = $("#artist-search").val();
+  console.log(userInputTwo);
+}
+
+$("#submit-btn").on("click", getEvents);
+
+
+
+
+
+// Irene
+
+
 
 
 var page = 0;
 
-function getEvents(page) {
-
-  $('#events-panel').show();
-  $('#attraction-panel').hide();
-
-  if (page < 0) {
-    page = 0;
-    return;
+function getEvents() {
+  userInputTwo = $("#artist-search").val();
+  event.preventDefault();
+$("#container-panel").show();
+$('#events-panel').show();
+$('#attraction-panel').hide();
+console.log(userInputTwo);
+if (page < 0) {
+  page = 0;
+  return;
+}
+if (page > 0) {
+  if (page > getEvents.json.page.totalPages-1) {
+    page=0;
   }
-  if (page > 0) {
-    if (page > getEvents.json.page.totalPages-1) {
-      page=0;
-    }
-  }
-  //change url to include input
-  $.ajax({
-    type:"GET",
-    url:`https://app.ticketmaster.com/discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV&keyword=${userInput}`,
-    async:true,
-    dataType: "json",
-    success: function(json) {
-          getEvents.json = json;
-  			  showEvents(json);
-  		   },
-    error: function(xhr, status, err) {
-  			  console.log(err);
-  		   }
-  });
+}
+//change url to include input
+$.ajax({
+  type:"GET",
+  url:`https://app.ticketmaster.com/discovery/v2/events.json?&apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV&keyword=${userInputTwo}`,
+  async:true,
+  dataType: "json",
+  success: function(json) {
+        getEvents.json = json;
+        showEvents(json);
+       },
+  error: function(xhr, status, err) {
+        console.log(err);
+       }
+});
 }
 
 function showEvents(json) {
-  var items = $('#events .list-group-item');
-  items.hide();
-  var events = json._embedded.events;
-  var item = items.first();
-  for (var i=0;i<events.length;i++) {
-    item.children('.list-group-item-heading').text(events[i].name);
-    item.children('.list-group-item-text').text(events[i].dates.start.localDate);
-    try {
-      item.children('.venue').text(events[i]._embedded.venues[0].name + " in " + events[i]._embedded.venues[0].city.name);
-      item.children(".list-group-item-url").text(events[i].url);
-    } catch (err) {
-      console.log(err);
-    }
-    item.show();
-    item.off("click");
-    item.click(events[i], function(eventObject) {
-      console.log(eventObject.data);
-      try {
-        getAttraction(eventObject.data._embedded.attractions[0].id);
-      } catch (err) {
-      console.log(err);
-      }
-    });
-    item=item.next();
+
+var items = $('#events .list-group-item');
+items.hide();
+var events = json._embedded.events;
+var item = items.first();
+for (var i=0;i<events.length;i++) {
+  item.children('.list-group-item-heading').text(events[i].name);
+  item.children('.list-group-item-text').text(events[i].dates.start.localDate);
+  item.children('.list-group-item-url').attr("src", events[i].url);
+  try {
+    item.children('.venue').text(events[i]._embedded.venues[0].name + " in " + events[i]._embedded.venues[0].city.name);
+    item.children(".list-group-item-url").text(events[i].url);
+  } catch (err) {
+    console.log(err);
   }
+  item.show();
+  item.off("click");
+  item.click(events[i], function(eventObject) {
+    console.log(eventObject.data);
+    try {
+      getAttraction(eventObject.data._embedded.attractions[0].id);
+    } catch (err) {
+    console.log(err);
+    }
+  });
+  item=item.next();
+}
 }
 
-$('#prev').click(function() {
-  getEvents(--page);
-});
-
-$('#next').click(function() {
-  getEvents(++page);
-});
 
 function getAttraction(id) {
-  $.ajax({
-    type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/attractions/"+id+".json?apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV",
-    async:true,
-    dataType: "json",
-    success: function(json) {
-          showAttraction(json);
-  		   },
-    error: function(xhr, status, err) {
-  			  console.log(err);
-  		   }
-  });
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v2/attractions/"+id+".json?apikey=dOZdUiHBshQqEPJLEZPEVR1AZZuPkqZV",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+        showAttraction(json);
+       },
+  error: function(xhr, status, err) {
+        console.log(err);
+       }
+});
 }
 
 function showAttraction(json) {
-  $('#events-panel').hide();
-  $('#attraction-panel').show();
   
-  $('#attraction-panel').click(function() {
-    getEvents(page);
-  });
-  
-  $('#attraction .list-group-item-heading').first().text(json.name);
-  $('#attraction img').first().attr('src',json.images[0].url);
-  $('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
-  $('#lastfm-web').text(json.externalLinks.lastfm[0].url);
+$('#events-panel').hide();
+$('#attraction-panel').show();
 
+$('#attraction-panel').click(function() {
+  getEvents(page);
+});
+
+$('#attraction .list-group-item-heading').first().text(json.name);
+$('#attraction img').first().attr('src',json.images[0].url);
+$('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
+$('#youtube-weblink').text(json.externalLinks.youtube[0].url);
+$('#youtube-weblink').click(function() {
+  window.location.href = json.externalLinks.youtube[0].url;
+});
+$('#itunes-weblink').text(json.externalLinks.itunes[0].url);
+$('#itunes-weblink').click(function() {
+  window.location.href = json.externalLinks.itunes[0].url;
+});
+$('#homepage-weblink').text(json.externalLinks.homepage[0].url);
+$('#homepage-weblink').click(function() {
+  window.location.href = json.externalLinks.homepage[0].url;
+});
+$('#tm-weblink').text(json.url);
+$('#tm-weblink').click(function() {
+window.location.href = json.url;
+});
 }
 getEvents(page);
