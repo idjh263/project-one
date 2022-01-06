@@ -516,6 +516,13 @@ progress {
 #container-panel {
   display:none;
 }
+
+#attraction-panel {
+  display:none;
+}
+#container-panel {
+  display:none;
+}
 @media (min-width: 1200px) {
   .display-3 {
     font-size: 4rem;
