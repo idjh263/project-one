@@ -1677,6 +1677,10 @@ function showAttraction(json) {
   
 $('#events-panel').hide();
 $('#attraction-panel').show();
+$("header").hide();
+$("#services").hide();
+$("#about").hide();
+$("#contact").hide();
 
 $('#attraction-panel').click(function() {
   getEvents(page);
@@ -1687,19 +1691,20 @@ $('#attraction img').first().attr('src',json.images[0].url);
 $('#classification').text(json.classifications[0].segment.name + " - " + json.classifications[0].genre.name + " - " + json.classifications[0].subGenre.name);
 $('#youtube-weblink').text(json.externalLinks.youtube[0].url);
 $('#youtube-weblink').click(function() {
-  window.location.href = json.externalLinks.youtube[0].url;
+  window.open(json.externalLinks.youtube[0].url);
 });
 $('#itunes-weblink').text(json.externalLinks.itunes[0].url);
 $('#itunes-weblink').click(function() {
-  window.location.href = json.externalLinks.itunes[0].url;
+  window.open(json.externalLinks.itunes[0].url);
 });
 $('#homepage-weblink').text(json.externalLinks.homepage[0].url);
 $('#homepage-weblink').click(function() {
-  window.location.href = json.externalLinks.homepage[0].url;
+  window.open(json.externalLinks.homepage[0].url);
 });
 $('#tm-weblink').text(json.url);
 $('#tm-weblink').click(function() {
-window.location.href = json.url;
+window.open(json.url);
 });
 }
+
 getEvents(page);
