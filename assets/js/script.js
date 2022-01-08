@@ -47,23 +47,31 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-//Justin
-
+// artist biography search 
 var userInput;
 
 function searchDisc () {
   userInput = $("#generic-search").val();
+  console.log(userInput);
+}
 
-  console.log("userInput", userInput);
+$("#search-btn").on("click", getArtistInfo);
+
+
+
+function getArtistInfo() {
+  userInput = $("#generic-search").val();
+  
+
   $.ajax({
     type:"GET",
-    url:"https://www.theaudiodb.com/api/v1/json/2/search.php?s=" + userInput,
+    url:`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${userInput}`,
     async:true,
     dataType: "json",
-    success: function(json) {
-          //getEvents.json = json;
-  			  //showEvents(json);
-          console.log(json)
+    success: function(jsonAI) {
+          
+  			  showArtistInfo(jsonAI);
+          console.log(jsonAI)
   		   },
     error: function(xhr, status, err) {
   			  console.log(err);
@@ -71,106 +79,35 @@ function searchDisc () {
   });
 }
 
-$("#search-btn").on("click", searchDisc);
+function showArtistInfo(jsonAI) {
+  event.preventDefault();
+  console.log(jsonAI);
+  $("#discog-panel").show();
+  $("#artist-title").text("Artist Name: " + jsonAI.artists[0].strArtist);
+  $("#artist-info").text(jsonAI.artists[0].strBiographyEN);
 
-
-
-
-
-// var userInputTwo;
-// var data;
-
-// function artistInput () {
-
-//   userInputTwo = $("#artist-search").val.trim();
-
-//   console.log(userInputTwo);
-// }
-
-// $("#submit-btn").on("click", artistInput);
-
-
-
-
-
-
-
-
-// Justin
-
-//Disography Search
-
-
-var key = "523532";
-var input = document.getElementById("keyword");  // change to input id 
-
-var page = 0;
-
-function getEvents(page) {
-
-  $('#events-panel').show();
-  $('#attraction-panel').hide();
-
-  if (page < 0) {
-    page = 0;
-    return;
-  }
-  if (page > 0) {
-    if (page > getEvents.json.page.totalPages-1) {
-      page=0;
-    }
-  }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Irene
-
+// events search function 
 var userInputTwo;
 
 
 function artistInput () {
 
   userInputTwo = $("#artist-search").val();
+ 
   console.log(userInputTwo);
 }
 
 $("#submit-btn").on("click", getEvents);
 
 
-
-
-
-
-
-
-// Irene
-
-
-
-
 var page = 0;
 
 function getEvents() {
-  event.preventDefault();
   userInputTwo = $("#artist-search").val();
-
+  event.preventDefault();
 $("#container-panel").show();
 $('#events-panel').show();
 $('#attraction-panel').hide();
@@ -279,5 +216,4 @@ $('#tm-weblink').click(function() {
 window.open(json.url);
 });
 }
-
 getEvents(page);
