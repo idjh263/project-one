@@ -25,11 +25,13 @@ This application will provide the user to learn interesting facts and biography 
 
 This will also provide information of their upcoming events. 
 
-
+https://watch.screencastify.com/v/tF0fjXHkuIUtmnE5VmHJ
 
 
 ## Website: 
 https://idjh263.github.io/project-one/
+
+## Contributors: 
 
 Made by the  Team members:
 
