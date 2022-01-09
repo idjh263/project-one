@@ -29,7 +29,11 @@ This will also provide information of their upcoming events.
 <img src="assets/img/encore_img2.png" width="50%">
 
 Demo video 
-https://watch.screencastify.com/v/tF0fjXHkuIUtmnE5VmHJ
+
+
+https://user-images.githubusercontent.com/92761848/148670401-6b15076d-4fdc-4c2c-8932-a5fa68f12731.mp4
+
+
 
 
 ## Website: 
