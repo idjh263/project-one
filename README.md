@@ -1,12 +1,13 @@
 # project-one
 
-## Description
+## Purpose
 
 The purpose of our application will be to provide the user the ability to:
 
-- look up music artists using different search parameters such as by artist names, album names etc.
-- find upcoming events related to their favourite artists
 - learn more about an artists background and interesting facts about them
+
+- find upcoming events related to their favourite artists
+
 
 Built with:
 
@@ -17,9 +18,24 @@ Built with:
 - The Audio DB API
 
 
-Team members:
+
+## Description:
+
+This application will provide the user to learn interesting facts and biography of their favorite artists. 
+
+This will also provide information of their upcoming events. 
+
+
+
+
+## Website: 
+https://idjh263.github.io/project-one/
+
+Made by the  Team members:
 
 - Emilia Velasco
 - Conor Bergauer
 - Irene Hipolito
 - Justin McIntyre
+
+also with the help of tutors in Trilogy and TA's (Ismael & Estiven 👍🏼)
