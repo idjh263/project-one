@@ -25,6 +25,10 @@ This application will provide the user to learn interesting facts and biography 
 
 This will also provide information of their upcoming events. 
 
+<img src="assets/img/encore_img1.png" width="50%">
+<img src="assets/img/encore_img2.png" width="50%">
+
+Demo video 
 https://watch.screencastify.com/v/tF0fjXHkuIUtmnE5VmHJ
 
 
